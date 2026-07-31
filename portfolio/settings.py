@@ -17,9 +17,13 @@ SECRET_KEY = os.environ.get(
     'django-insecure-CHANGE-THIS-KEY-BEFORE-DEPLOYING-!!!'
 )
 
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "portfolio2-oy1z.onrender.com",
+]
 
 # -------------------------------------------------------------------------
 # APPLICATIONS
