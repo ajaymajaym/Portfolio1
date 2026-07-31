@@ -1,0 +1,24 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block content_title %}
+    <h1>{% trans 'Dashboard' %}</h1>
+{% endblock %}
+
+{% block content %}
+<div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px;">
+    <div style="background:#2563eb; color:#fff; border-radius:10px; padding:20px 28px; min-width:180px;">
+        <div style="font-size:2rem; font-weight:700;">{{ total_messages }}</div>
+        <div style="opacity:.9;">Total Contact Messages</div>
+    </div>
+    <div style="background:#f97316; color:#fff; border-radius:10px; padding:20px 28px; min-width:180px;">
+        <div style="font-size:2rem; font-weight:700;">{{ unread_messages }}</div>
+        <div style="opacity:.9;">Unread Messages</div>
+    </div>
+    <div style="background:#16a34a; color:#fff; border-radius:10px; padding:20px 28px; min-width:180px;">
+        <div style="font-size:2rem; font-weight:700;">{{ total_projects }}</div>
+        <div style="opacity:.9;">Projects Listed</div>
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}

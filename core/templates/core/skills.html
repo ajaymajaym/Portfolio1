@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container text-center" data-aos="fade-up">
+        <p class="section-eyebrow">What I bring</p>
+        <h1>Skills</h1>
+        <p class="section-lead">A snapshot of the technologies and tools I'm working with.</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            {% for category, skills in skill_groups.items %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                <div class="skill-category-card h-100">
+                    <h4 class="mb-4">{{ category }}</h4>
+                    {% for skill in skills %}
+                    <div class="skill-item mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="skill-name">{{ skill.name }}</span>
+                            <span class="skill-pct">{{ skill.proficiency }}%</span>
+                        </div>
+                        <div class="progress skill-progress">
+                            <div class="progress-bar" role="progressbar"
+                                 style="width: 0%;" data-target="{{ skill.proficiency }}"
+                                 aria-valuenow="{{ skill.proficiency }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Animate progress bars to their target width once they're in view.
+    document.addEventListener('DOMContentLoaded', function () {
+        const bars = document.querySelectorAll('.skill-progress .progress-bar');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    bar.style.width = bar.dataset.target + '%';
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.3 });
+        bars.forEach((bar) => observer.observe(bar));
+    });
+</script>
+{% endblock %}
