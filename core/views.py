@@ -82,7 +82,7 @@ class ContactView(View):
                 return render(request, self.template_name, {'form': ContactForm(), 'sent': True})
 
             contact = form.save()
-            self._send_notification(contact)
+           
 
             if is_ajax:
                 return JsonResponse({
